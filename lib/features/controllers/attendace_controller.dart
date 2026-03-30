@@ -12,7 +12,7 @@ class AttendanceController {
   final position = TextEditingController();
   final contact = TextEditingController();
   final purpose = TextEditingController();
-  a
+  
   
   String selectedSex = 'M'; 
   bool isLoading = false; 
