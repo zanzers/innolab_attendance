@@ -41,5 +41,7 @@ class ATextTheme {
     
       
     );
+
+  static FontWeight? get bodyLarge => null;
   
 }

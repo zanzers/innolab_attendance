@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:innolab_attendace/features/attendace/attendance_form.dart';
 import 'package:innolab_attendace/utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -7,9 +8,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false ,
       themeMode: ThemeMode.system,
       theme: ATheme.lightTheme,
       darkTheme: ATheme.darkTheme,
+      home: AttendanceScreen(),
     );
   }
 }
