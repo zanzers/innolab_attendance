@@ -1,0 +1,71 @@
+name: innolab_attendace
+description: "innolab amcen attendance"
+
+# Add images, logos, icons, and fonts folder in assets
+
+publish_to: 'Nowell_Marcelo.ect'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.8
+  
+  # PACKAGES
+dependencies:
+  flutter:
+    sdk: flutter
+
+# UTILITY PACKAGES
+  http: ^1.6.0
+  intl: ^0.20.2
+  logger: ^1.1.0
+  url_launcher: ^6.1.7 
+
+# ICONS
+  iconsax: ^0.0.8
+  cupertino_icons: ^1.0.8
+
+# STATE MANAGEMENT
+  get: ^4.7.3
+  get_storage: ^2.0.3
+
+# PRODUCT SPECIFIC PACKAGES
+
+  google_fonts: ^8.0.2
+  provider: ^6.0.5
+
+# PACKAGES END
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+# LOCAL ASSETS
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/logos/
+
+# LOCAL FONTS
+  # fonts:
+    # - family: Poppins
+    #   fonts:
+    #     - asset: assets/fonts/Poppins-Light.ttf
+    #       weight: 300
+    #     - asset: assets/fonts/Poppins-Regular.ttf
+    #       weight: 400
+    #     - asset: assets/fonts/Poppins-Italic.ttf
+    #       style: italic
+    #     - asset: assets/fonts/Poppins-Medium.ttf
+    #       weight: 500
+    #     - asset: assets/fonts/Poppins-SemiBold.ttf
+    #       weight: 600
+    #     - asset: assets/fonts/Poppins-MediumItalic.ttf
+    #       weight: 500
+    #       style: italic
+    #     - asset: assets/fonts/Poppins-Bold.ttf
+    #       weight: 800
