@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:innolab_attendace/features/attendace/attendance_form.dart';
+import 'package:innolab_attendace/features/attendace/attendance_screen.dart';
 import 'package:innolab_attendace/utils/theme/theme.dart';
 
 class App extends StatelessWidget {

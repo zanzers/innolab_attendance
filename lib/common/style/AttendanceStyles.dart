@@ -13,10 +13,11 @@ class AttendanceStyles {
   static InputDecoration fieldDecoration(String hint) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: const TextStyle(color: Colors.grey, fontSize: 13),
       filled: true,
       fillColor: Colors.white,
+      hintStyle: const TextStyle(color: Colors.grey, fontSize: 13),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Colors.grey.shade300, width: 0.8),
@@ -28,6 +29,11 @@ class AttendanceStyles {
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10),
         borderSide: BorderSide(color: Colors.grey.shade300, width: 0.8),
+      ),
+
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10),
+        borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
       ),
     );
   }
