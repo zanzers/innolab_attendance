@@ -4,7 +4,7 @@ import 'package:innolab_attendace/features/attendace/widgets/textEditingControll
 
 
 class UserTimeView extends StatelessWidget {
-  final AttendanceController controller;
+  final AttendanceProvider controller;
 
   const UserTimeView({super.key, required this.controller});
 

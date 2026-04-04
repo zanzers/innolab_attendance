@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:innolab_attendace/features/attendace/widgets/textEditingController.dart';
 
 class SubmitButtonSection extends StatelessWidget {
-  final AttendanceController controller;
+  final AttendanceProvider controller;
   final bool agreedToPrivacy;
   final VoidCallback? onPressed;
 
