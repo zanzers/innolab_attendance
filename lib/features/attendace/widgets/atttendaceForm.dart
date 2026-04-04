@@ -17,7 +17,7 @@ class Atttendaceform extends StatelessWidget {
     required this.contactFocusNode,
   });
 
-  final AttendanceController controller;
+  final AttendanceProvider controller;
   final FocusNode contactFocusNode;
   final SignatureController signatureController;
   final bool isMale;

@@ -1,26 +1,50 @@
-// ignore: file_names
 import 'dart:convert';
 import 'dart:typed_data';
-import 'dart:html' as html;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:innolab_attendace/utils/constant/text_string.dart';
+import 'dart:html' as html; // For Web LocalStorage
 
-class AttendanceController extends ChangeNotifier {
+class AttendanceProvider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
-
   final fullName = TextEditingController();
   final office = TextEditingController();
-  final position = TextEditingController();
   final contact = TextEditingController();
   final purpose = TextEditingController();
-
   
-  String selectedSex = ''; 
-  bool isLoading = false;
+  String selectedSex = 'M';
   bool isUserCheckedIn = false;
-  bool hasAttemptedSubmit = false;
+  bool isLoading = false;
+  bool hasAttemptedSubmit =false;
 
+  AttendanceProvider() {
+    // This runs immediately when the app starts
+    initCheckInStatus();
+  }
+
+  // --- INITIALIZATION LOGIC ---
+  void initCheckInStatus() {
+    final savedContact = html.window.localStorage['attendance_contact'];
+    final savedDate = html.window.localStorage['attendance_date'];
+    final savedName = html.window.localStorage['attendance_fullName'];
+    
+    final today = DateTime.now().toString().split(' ')[0]; // e.g., "2026-04-04"
+
+    // 1. If it's a new day, force a reset even if data exists
+    if (savedDate != null && savedDate != today) {
+      forceReset();
+      return;
+    }
+
+    // 2. If data exists for today, restore the session
+    if (savedContact != null && savedContact.isNotEmpty) {
+      isUserCheckedIn = true;
+      contact.text = savedContact;
+      fullName.text = savedName ?? "";
+      notifyListeners();
+    }
+  }
+
+  // --- CHECK-IN LOGIC ---
   Future<String> submitAttendance(Uint8List? signatureBytes) async {
     if (signatureBytes == null) return "Please provide a signature";
 
@@ -28,14 +52,15 @@ class AttendanceController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final url = Uri.parse(ATexts.urlUri);
+      final url = Uri.parse("YOUR_APPS_SCRIPT_URL_HERE");
+      final today = DateTime.now().toString().split(' ')[0];
 
       final bodyData = jsonEncode({
         "fullName": fullName.text.trim(),
         "male": selectedSex == 'M' ? 'M' : ' ',
         "female": selectedSex == 'F' ? 'F' : ' ',
         "office": office.text.trim(),
-        "contact": contact.text.trim(), 
+        "contact": contact.text.trim(),
         "purpose": purpose.text.trim(),
         "signature": base64Encode(signatureBytes),
         "action": "checkIn",
@@ -44,16 +69,16 @@ class AttendanceController extends ChangeNotifier {
       final response = await http.post(url, body: bodyData);
 
       if (response.statusCode == 200 || response.statusCode == 302) {
-
-        final responseBody = response.body;
-        if(responseBody.contains("Error:")){
-          return responseBody.replaceFirst("Error: ", "");
+        if (response.body.contains("Error:")) {
+          return response.body.replaceFirst("Error: ", "");
         }
 
+        // SAVE TO LOCAL STORAGE
         html.window.localStorage['attendance_contact'] = contact.text.trim();
         html.window.localStorage['attendance_fullName'] = fullName.text.trim();
+        html.window.localStorage['attendance_date'] = today;
+        
         isUserCheckedIn = true;
-
         return "Attendance Submitted Successfully!";
       } else {
         return "Server Error: ${response.statusCode}";
@@ -66,23 +91,24 @@ class AttendanceController extends ChangeNotifier {
     }
   }
 
-Future<String> handleTimeOut() async {
+  // --- CHECK-OUT LOGIC ---
+  Future<String> handleTimeOut() async {
     isLoading = true;
     notifyListeners();
 
     try {
-      final url = Uri.parse(ATexts.urlUri);
-      final saveContact = html.window.localStorage['attendance_contact'];
+      final url = Uri.parse("YOUR_APPS_SCRIPT_URL_HERE");
+      final savedContact = html.window.localStorage['attendance_contact'];
 
       final bodyData = jsonEncode({
-        "contact": saveContact,
+        "contact": savedContact,
         "action": 'checkOut',
       });
 
       final response = await http.post(url, body: bodyData);
 
       if (response.statusCode == 200 || response.statusCode == 302) {
-       forceReset();
+        forceReset(); // Clear everything on success
         return "Checked Out Successfully!";
       } else {
         return "Server Error: ${response.statusCode}";
@@ -95,42 +121,17 @@ Future<String> handleTimeOut() async {
     }
   }
 
+  // --- RESET LOGIC ---
   void forceReset() {
-    html.window.localStorage.clear();
+    html.window.localStorage.remove('attendance_contact');
+    html.window.localStorage.remove('attendance_fullName');
+    html.window.localStorage.remove('attendance_date');
+
     isUserCheckedIn = false;
-    clearForm();
-    notifyListeners();
-  }
-
-
-
-  void checkExistingSession(){
-    if(html.window.localStorage.containsKey('attendance_contact')){
-      isUserCheckedIn = true;
-      fullName.text = html.window.localStorage['attendance_fullName'] ?? '';
-      notifyListeners();
-    }
-  }
-
-  void clearForm() {
     fullName.clear();
-    office.clear();
-    position.clear();
     contact.clear();
+    office.clear();
     purpose.clear();
-    selectedSex = '';
     notifyListeners();
   }
-
-  @override
-  void dispose() {
-    fullName.dispose();
-    office.dispose();
-    position.dispose();
-    contact.dispose();
-    purpose.dispose();
-    super.dispose();
-  }
-
-
 }
