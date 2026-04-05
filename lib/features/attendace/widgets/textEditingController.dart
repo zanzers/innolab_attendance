@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:html' as html; // For Web LocalStorage
+import 'dart:html' as html;
+
+import 'package:innolab_attendace/utils/constant/text_string.dart'; // For Web LocalStorage
 
 class AttendanceProvider extends ChangeNotifier {
   final formKey = GlobalKey<FormState>();
@@ -10,6 +12,7 @@ class AttendanceProvider extends ChangeNotifier {
   final office = TextEditingController();
   final contact = TextEditingController();
   final purpose = TextEditingController();
+  final url = Uri.parse(ATexts.urlUri);
   
   String selectedSex = 'M';
   bool isUserCheckedIn = false;
@@ -52,7 +55,6 @@ class AttendanceProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final url = Uri.parse("YOUR_APPS_SCRIPT_URL_HERE");
       final today = DateTime.now().toString().split(' ')[0];
 
       final bodyData = jsonEncode({
@@ -97,7 +99,6 @@ class AttendanceProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final url = Uri.parse("YOUR_APPS_SCRIPT_URL_HERE");
       final savedContact = html.window.localStorage['attendance_contact'];
 
       final bodyData = jsonEncode({
@@ -108,7 +109,7 @@ class AttendanceProvider extends ChangeNotifier {
       final response = await http.post(url, body: bodyData);
 
       if (response.statusCode == 200 || response.statusCode == 302) {
-        forceReset(); // Clear everything on success
+        forceReset();
         return "Checked Out Successfully!";
       } else {
         return "Server Error: ${response.statusCode}";
