@@ -2,8 +2,7 @@ class ATexts {
 
 
 
-  static const String urlUri = 'https://script.google.com/macros/s/AKfycbyM0SkIVT7mP3CS7vNI6HJFEI53eqW9rL53VTxoEPe3ittv-H6CmoyNyJlcZNz1w0j1xQ/exec';
-
+  static const String urlUri = 'https://script.google.com/macros/s/AKfycbw7hq3tNs-JQpWioag4oxdolY0_TyalLkm5EP-ElaQJ0-a5ihNYcDLocxDmUJKxX_DaHQ/exec';
   // App Name
   static const String appName = 'Attendace Formm';
 
@@ -11,6 +10,7 @@ class ATexts {
   static const String fullName = 'Full Name ';
   static const String sex = 'Sex';
   static const String sexMale = 'Male';
+  static const String iRead = 'I have read and agree to the data privacy policy';
 
   static const String privacyNotice = '''
 For this visit, we collect your names, sex, office/agency affiliation, 
@@ -20,7 +20,33 @@ Through this visitor's log sheet, we also collet your signature as proof of appe
 To the extent permitted or required by law, we may also share photos and videos of your visit to promote
 WPU through brochures, website posts and social media.''';
 
+
+// field Decorator
+  static const String nameDecorator = 'e.g Juan Dela Cruz';
+  static const String sexDecorator = 'Sex';
+  static const String officeAgencyDecorator = 'OFFICE / AGENCY';
+  static const String emailContactDecorator = 'EMAIL / CONTACT NUMBER';
+  static const String purposeDecorator = 'PURPOSE OF VISIT';
+  static const String signatureDecorator = 'DIGITAL SIGNATURE';
+  static const String emailDecorator = '@gmail.com';
+  static const String emailDecorator1 = 'e.g. email@wpu.edu.ph';
+  static const String purposeDecorator1 = 'e.g. Inquiry / Meeting';
  
+
+// validation error
+
+  static const String errorName = 'Required Full Name ';
+  static const String errorFullName = 'Please enter your full name(First Name, Middle Initial, Last Name)';
+  static const String errorSex = 'Please choose gender';
+  static const String errorSignature = 'Signature is required';
+  static const String errorPurpose = 'purpose of visit';
+  static const String errorContactLength = 'Please enter a valid contact number';
+  static const String errorEmail = 'Please enter a valid email';
+  static const String errorOffice = 'office / agency is required';
+  static const String errorContact = 'contact is required';
+  static const String errorFormat = 'Invalid format (Cannot start with 00)';
+  
+
 }
 
 
@@ -30,8 +56,12 @@ WPU through brochures, website posts and social media.''';
 // Deployment ID
 
 
-//AKfycbyM0SkIVT7mP3CS7vNI6HJFEI53eqW9rL53VTxoEPe3ittv-H6CmoyNyJlcZNz1w0j1xQ
+// AKfycbw7hq3tNs-JQpWioag4oxdolY0_TyalLkm5EP-ElaQJ0-a5ihNYcDLocxDmUJKxX_DaHQ
+
 
 // URL:
+// https://script.google.com/macros/s/AKfycbw7hq3tNs-JQpWioag4oxdolY0_TyalLkm5EP-ElaQJ0-a5ihNYcDLocxDmUJKxX_DaHQ/exec
 
-// https://script.google.com/macros/s/AKfycbyM0SkIVT7mP3CS7vNI6HJFEI53eqW9rL53VTxoEPe3ittv-H6CmoyNyJlcZNz1w0j1xQ/exec
+// validation
+// error-handling
+// docs improvement

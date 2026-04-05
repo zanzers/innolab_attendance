@@ -10,6 +10,9 @@ build/
 .buildlog/
 .history
 .svn/
+.firebase/
+build/
+public/
 .swiftpm/
 migrate_working_dir/
 
@@ -45,7 +48,8 @@ migrate_working_dir/
 
 # Symbolication related
 app.*.symbols
-
+.firebaserc
+firebase.json
 # Obfuscation related
 app.*.map.json
 
