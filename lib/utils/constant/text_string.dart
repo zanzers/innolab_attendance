@@ -2,7 +2,7 @@ class ATexts {
 
 
 
-  static const String urlUri = 'https://script.google.com/macros/s/AKfycbytpjWkHZS5wzUVHZcKjRW2VS9E2L9h_djQS4gr-uJ2qVvzpaTR9mGmoOIptg7S0CEL/exec';
+  static const String urlUri = 'https://script.google.com/macros/s/AKfycbw7hq3tNs-JQpWioag4oxdolY0_TyalLkm5EP-ElaQJ0-a5ihNYcDLocxDmUJKxX_DaHQ/exec';
   // App Name
   static const String appName = 'Attendace Formm';
 
@@ -56,11 +56,11 @@ WPU through brochures, website posts and social media.''';
 // Deployment ID
 
 
-// AKfycbytpjWkHZS5wzUVHZcKjRW2VS9E2L9h_djQS4gr-uJ2qVvzpaTR9mGmoOIptg7S0CEL
+// AKfycbw7hq3tNs-JQpWioag4oxdolY0_TyalLkm5EP-ElaQJ0-a5ihNYcDLocxDmUJKxX_DaHQ
 
 
 // URL:
-// https://script.google.com/macros/s/AKfycbytpjWkHZS5wzUVHZcKjRW2VS9E2L9h_djQS4gr-uJ2qVvzpaTR9mGmoOIptg7S0CEL/exec
+// https://script.google.com/macros/s/AKfycbw7hq3tNs-JQpWioag4oxdolY0_TyalLkm5EP-ElaQJ0-a5ihNYcDLocxDmUJKxX_DaHQ/exec
 
 // validation
 // error-handling
